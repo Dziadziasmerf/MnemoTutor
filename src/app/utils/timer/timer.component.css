@@ -1,0 +1,12 @@
+h1 {
+  color: #595959;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.main {
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  width: 300px;
+}

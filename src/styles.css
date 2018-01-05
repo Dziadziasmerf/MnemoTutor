@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body {
+  margin: 0;
+}
+
+
+/* snackBar */
+.snackbar-success {
+  background: #4CC954;
+  color: whitesmoke;
+}
+
+.snackbar-error {
+  background: #E9323B;
+  color: whitesmoke;
+}
+
+.form {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.buttons-layout {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+/* dialog */
+.dialog-title {
+  color: white;
+  background-color: grey;
+  text-align: center;
+}

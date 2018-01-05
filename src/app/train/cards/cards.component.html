@@ -1,0 +1,19 @@
+<h1>Speed cards</h1>
+<button mat-mini-fab color="warn" (click)="setColor('hearts')">
+  <mat-icon aria-label="Example icon-button with a heart icon">&hearts;</mat-icon>
+</button>
+<button mat-mini-fab color="" (click)="setColor('spades')">
+  <mat-icon aria-label="Example icon-button with a heart icon">&spades;</mat-icon>
+</button>
+<button mat-mini-fab color="warn" (click)="setColor('diamonds')">
+  <mat-icon aria-label="Example icon-button with a heart icon">&diams;</mat-icon>
+</button>
+<button mat-mini-fab color="" (click)="setColor('clubs')">
+  <mat-icon aria-label="Example icon-button with a heart icon">&clubs;</mat-icon>
+</button>
+
+<div class="cards-selection">
+  <div *ngFor="let card of cards">
+    <img [src]="getCardImage(color,card)" (click)="selectCard(card)">
+  </div>
+</div>

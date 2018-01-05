@@ -1,0 +1,32 @@
+<div class="chips">
+  <mat-chip-list>
+    <mat-chip [color]="warn" (click)="setFilter('all')">All</mat-chip>
+    <mat-chip (click)="setFilter('cards')">Cards</mat-chip>
+    <mat-chip (click)="setFilter('numbers')">Numbers</mat-chip>
+  </mat-chip-list>
+</div>
+
+<div class="cards">
+  <mat-card class="card" *ngIf="showDiscipline('cards')">
+    <mat-card-title class="card-title">Speed cards</mat-card-title>
+    <img mat-card-image src="../../../assets/speed-cards.jpg">
+    <mat-card-content>
+      <strong>World record: 13.96s</strong>
+    </mat-card-content>
+    <div class="buttons-layout">
+      <button mat-button class="train-button" (click)="showCardsDialog()">Train</button>
+    </div>
+  </mat-card>
+
+  <mat-card class="card" *ngIf="showDiscipline('numbers')">
+    <mat-card-title class="card-title">5-minute numbers</mat-card-title>
+    <img mat-card-image src="../../../assets/numbers.jpg">
+    <mat-card-content>
+      <strong>World record: 568 digits</strong>
+    </mat-card-content>
+    <div class="buttons-layout">
+      <button mat-button class="train-button" (click)="showNumbersDialog()">Train</button>
+    </div>
+  </mat-card>
+</div>
+

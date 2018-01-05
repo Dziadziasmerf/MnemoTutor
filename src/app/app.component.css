@@ -1,0 +1,73 @@
+.top-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-menu {
+  margin-left: 30px;
+}
+
+.login-menu {
+  margin-right: 30px;
+  font-family: 'fantasy';
+  color: darkgrey;
+  border: 2px darkgrey;
+}
+
+.menu {
+  position: absolute;
+  bottom: -5%;
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.menu-buttons {
+  width: 20%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  display: inline-block;
+  text-align: center;
+  color: grey;
+
+}
+
+.menu-buttons-icon {
+  text-align: center;
+  font-size: 8vw;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.my-text {
+  font-family: "Impact";
+  font-size: 2vw;
+}
+
+#content {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+footer {
+  display: flex;
+  width: 100%;
+  position: fixed;
+  letter-spacing: 1.5px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  font-family: "Nimbus Sans";
+  font-size: small;
+  height: 25px;
+  bottom: 0;
+  justify-content: center;
+  padding-top: 10px;
+
+}

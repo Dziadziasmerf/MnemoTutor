@@ -1,0 +1,17 @@
+.cards-selection {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cards-selection img {
+  width: 54px;
+  height: 75px;
+}
+
+.cards-selection img:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}

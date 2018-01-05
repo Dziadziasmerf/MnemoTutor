@@ -1,0 +1,49 @@
+<h2 class="dialog-title" mat-dialog-title>Sign up</h2>
+<mat-horizontal-stepper [linear]="true">
+  <mat-step [stepControl]="accountGroup" completed="accountGroup.valid" editable="false">
+    <form [formGroup]="accountGroup" class="form">
+      <ng-template matStepLabel>Fill form out</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="userName" required>
+        <mat-error *ngIf="!accountGroup.get('userName').valid">
+          {{getUsernameErrorMessage()}}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="E-mail" formControlName="email" required>
+        <mat-error *ngIf="!accountGroup.get('email').valid">
+          {{getEmailErrorMessage()}}
+        </mat-error>
+      </mat-form-field>
+      <div formGroupName="passwordGroup" class="form">
+        <mat-form-field>
+          <input matInput placeholder="Password" formControlName="password" type="password" required>
+          <mat-error *ngIf="!accountGroup.get('passwordGroup.password').valid">
+            {{getPasswordErrorMessage()}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Retype password" formControlName="retypePassword" type="password" [errorStateMatcher]="parentErrorStateMatcher" required>
+          <mat-error *ngIf="!accountGroup.get('passwordGroup.retypePassword').valid || accountGroup.get('passwordGroup').hasError('passwordEquality')">
+            {{getRetypePasswordErrorMessage()}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="buttons-layout">
+        <button mat-raised-button color="warn" (click)="onNoClick()">Cancel</button>
+        <button mat-raised-button color="primary" (click)="addUser()" matStepperNext [disabled]="!accountGroup.valid">Sign up</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <mat-card class="message">
+      <mat-card-content [style.color]="secondStepContentColor">
+        <p><strong>{{secondStepContent}}</strong></p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="onNoClick()">Close</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-step>
+</mat-horizontal-stepper>

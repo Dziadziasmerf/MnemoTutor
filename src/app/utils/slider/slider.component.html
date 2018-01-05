@@ -1,0 +1,10 @@
+<div class="slider">
+  <img [src]="prevImg" class="side-img" (click)="moveLeftAction()">
+  <div class="main-img" (mouseenter)="showCloseButton()" (mouseleave)="hideCloseButton()">
+    <button mat-fab class="close" color="warn" *ngIf="closeButtonVisible" (click)="closeAction()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <img [src]="currentImg">
+  </div>
+  <img [src]="nextImg" class="side-img" (click)="moveRightAction()">
+</div>

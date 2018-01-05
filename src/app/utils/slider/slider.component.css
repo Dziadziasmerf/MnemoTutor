@@ -1,0 +1,32 @@
+.slider {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.main-img {
+  margin: 10px;
+  position: relative;
+}
+
+.main-img img {
+  width: 100px;
+}
+
+.side-img {
+  width: 75px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.side-img:hover {
+  opacity: 1;
+}
+
+.close {
+  position: absolute;
+  cursor: pointer;
+  opacity: 0.4;
+  top: 30%;
+  right: 20%;
+}

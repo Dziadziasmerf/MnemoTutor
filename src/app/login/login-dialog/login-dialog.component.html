@@ -1,0 +1,17 @@
+<h2 class="dialog-title" mat-dialog-title>Login panel</h2>
+<div class="form">
+  <mat-form-field>
+    <input matInput placeholder="Username" [(ngModel)]="username">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Password" [type]="hidePassword ? 'password' : 'text'" [(ngModel)]="password">
+    <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}
+    </mat-icon>
+  </mat-form-field>
+  <div class="buttons-layout">
+    <button mat-raised-button color="primary" (click)="showRegisterDialog()">Sign up</button>
+    <button mat-raised-button color="accent" (click)="login()">Login</button>
+  </div>
+
+</div>

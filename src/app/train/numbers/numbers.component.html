@@ -1,0 +1,16 @@
+<div class="main" id="main">
+  <h1>5-minute numbers</h1>
+  <app-timer (timerEvent)="setTimerStatus($event)"></app-timer>
+
+
+  <div class="recall" *ngIf="!timerRunning && numbers.length > 0">
+    <h3>Podaj zapamiętane liczby:</h3>
+    <div>
+      <input (keyup)="onKey($event)" [disabled]="userNumbers.length===numbers.length">
+      <button mat-icon-button (click)="listen()" [disabled]="!showListenButton">
+        <mat-icon>record_voice_over</mat-icon>
+      </button>
+    </div>
+  </div>
+  <app-slider *ngIf="timerRunning" [prevImg]="getPrevNumber()" [currentImg]="getCurrentNumber()" [nextImg]="getNextNumber()" [enableCloseButton]="false" (close)="removeNumber()" (moveLeft)="goBack()" (moveRight)="goForward()"></app-slider>
+</div>
