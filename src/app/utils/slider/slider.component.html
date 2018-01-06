@@ -5,6 +5,7 @@
       <mat-icon>close</mat-icon>
     </button>
     <img [src]="currentImg">
+    <div [className]="currentImgFilter"></div>
   </div>
   <img [src]="nextImg" class="side-img" (click)="moveRightAction()">
 </div>

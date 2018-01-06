@@ -1,16 +1,35 @@
 <div class="main" id="main">
-  <h1>5-minute numbers</h1>
-  <app-timer (timerEvent)="setTimerStatus($event)"></app-timer>
+  <h1 class="title">5-minute numbers</h1>
+  <h3 *ngIf="trainingStatus === TrainingStatus.NONE" class="info">Click 'Start' when you are ready. Try to remember as many numbers as you can. Navigate between digits with arrows or clicking on one of side digits. Good luck!</h3>
+  <app-timer  *ngIf="trainingStatus === TrainingStatus.NONE || trainingStatus === TrainingStatus.START" (timerEvent)="timerStatusChanged($event)" [timeInSec]="15"></app-timer>
 
 
-  <div class="recall" *ngIf="!timerRunning && numbers.length > 0">
-    <h3>Podaj zapamiętane liczby:</h3>
-    <div>
-      <input (keyup)="onKey($event)" [disabled]="userNumbers.length===numbers.length">
+  <div class="recall" *ngIf="trainingStatus === TrainingStatus.RECALL">
+    <h3 class="info">Click on or type in remembered numbers:</h3>
+    <div class="numbers-picker">
+      <img *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]" [src]="getImagePath(number)" (click)="selectNumber(number)">
+    </div>
+    <div class="numbers-status">
+      Numbers left: {{numbers.length - userNumbers.length }}
+    </div>
+<!--  TODO add voice recognition
+     <div>
       <button mat-icon-button (click)="listen()" [disabled]="!showListenButton">
         <mat-icon>record_voice_over</mat-icon>
       </button>
-    </div>
+    </div>-->
   </div>
-  <app-slider *ngIf="timerRunning" [prevImg]="getPrevNumber()" [currentImg]="getCurrentNumber()" [nextImg]="getNextNumber()" [enableCloseButton]="false" (close)="removeNumber()" (moveLeft)="goBack()" (moveRight)="goForward()"></app-slider>
+  <div *ngIf="trainingStatus === TrainingStatus.END">
+    <p><strong>Your score: {{getScore()}}/{{numbers.length}}</strong></p>
+  </div>
+  <app-slider *ngIf="trainingStatus !== TrainingStatus.NONE" [prevImg]="getPrevNumber()"
+              [currentImg]="getCurrentNumber()" [nextImg]="getNextNumber()"
+              [enableCloseButton]="trainingStatus === TrainingStatus.RECALL"
+              (close)="removeNumber()" (moveLeft)="goBack()" (moveRight)="goForward()"
+              [currentImgFilter]="getNumberFilter()"></app-slider>
+  <div class="buttons-layout">
+    <button mat-button *ngIf="trainingStatus === TrainingStatus.RECALL" class="validate-button" (click)="validate()">Validate</button>
+    <button mat-button *ngIf="trainingStatus === TrainingStatus.END" class="reset-button" (click)="reset()">Tray again</button>
+  </div>
+
 </div>

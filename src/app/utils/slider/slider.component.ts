@@ -15,6 +15,7 @@ export class SliderComponent implements OnInit {
   @Input() prevImg: string;
   @Input() nextImg: string;
   @Input() currentImg: string;
+  @Input() currentImgFilter: string;
   closeButtonVisible = false;
   constructor() { }
 
@@ -23,7 +24,6 @@ export class SliderComponent implements OnInit {
 
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    console.log(event);
 
     if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
       this.moveRightAction();
@@ -52,10 +52,14 @@ export class SliderComponent implements OnInit {
     this.moveRight.emit('moveRight');
   }
 
-}
+  getCurrentImgFilter(): string {
+    return this.currentImgFilter;
+  }
 
+}
+// TODO move to utils
 export enum KEY_CODE {
   RIGHT_ARROW = 39,
   LEFT_ARROW = 37
 }
-
+// TODO add digit read

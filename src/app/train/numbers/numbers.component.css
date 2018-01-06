@@ -1,48 +1,61 @@
 .main {
   width: 100%;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
   display: flex;
   flex-direction: column;
+  background-color: lightgrey;
+}
+.title {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bolder;
+  font-size: x-large;
+  color: #363435;
+  padding: 10px;
+  background-color: whitesmoke;
+  text-align: center;
 }
 
-#main {
-  box-shadow: -1px -1px 9px 9px rgba(0,0,0,0.1);
+.info {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: medium;
+  border: darkgrey thin solid;
+  text-align: center;
+  padding: 5px;
+  margin: 10px;
+  background-color: white;
 }
 
-.numbers-view{
-  margin: 20px;
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-}
-
-.numbers-view img{
-  flex-grow: 4;
-}
-
-.recall {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-}
-
-.recall h3{
-  color: darkgrey;
-}
-.recall img {
-  width: 47px;
-  height: 64px;
-}
-
-.recall-img-container {
+.numbers-picker {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
-.wrong-number-img {
-  opacity: 0.4;
+.numbers-picker img {
+  width: 54px;
+  height: 74px;
+}
+
+.numbers-picker img:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.numbers-status {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.reset-button {
+  background-color: darkblue;
+  color: white;
+  font-weight: bold;
+}
+
+.validate-button {
+  background-color: darkgreen;
+  color: white;
+  font-weight: bold;
 }

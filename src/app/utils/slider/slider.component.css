@@ -30,3 +30,27 @@
   top: 30%;
   right: 20%;
 }
+
+.error {
+  background-color: rgba(248, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 97%;
+}
+
+.correct {
+  background-color: rgba(0, 140, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 97%;
+}
+
+.none {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}

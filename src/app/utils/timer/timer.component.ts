@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {Observable, Subscription} from 'rxjs/';
 
 @Component({
@@ -10,9 +10,9 @@ import {Observable, Subscription} from 'rxjs/';
 export class TimerComponent implements OnInit {
 
   @Output() timerEvent: EventEmitter<boolean> = new EventEmitter();
+  @Input() timeInSec: number;
 
   counting = false;
-
   ticks = 0;
   minutesDisplay = '00';
   hoursDisplay = '00';
@@ -24,20 +24,20 @@ export class TimerComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setDisplay(this.timeInSec);
   }
 
   private startTimer() {
     this.counting = true;
     const timer = Observable.timer(1, 1000);
-    const start = 15;
+    const start = this.timeInSec;
     this.sendTimerStatus(true);
     this.subscription = timer.map(i => start - i).take(start + 1).subscribe(
       t => {
         this.ticks = t;
 
-        this.secondsDisplay = this.getSeconds(this.ticks);
-        this.minutesDisplay = this.getMinutes(this.ticks);
-        this.hoursDisplay = this.getHours(this.ticks);
+        this.setDisplay(this.ticks);
+
         if (this.secondsDisplay === '00' && this.minutesDisplay === '00' && this.hoursDisplay === '00') {
           this.sendTimerStatus(false);
           this.subscription.unsubscribe();
@@ -45,6 +45,12 @@ export class TimerComponent implements OnInit {
         }
       }
     );
+  }
+
+  setDisplay(ticks: number): void {
+    this.secondsDisplay = this.getSeconds(ticks);
+    this.minutesDisplay = this.getMinutes(ticks);
+    this.hoursDisplay = this.getHours(ticks);
   }
 
   sendTimerStatus(running: boolean) {

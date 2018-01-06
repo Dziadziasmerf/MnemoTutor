@@ -4,6 +4,10 @@ h1 {
   text-align: center;
 }
 
+.warn {
+  color: darkred;
+}
+
 .main {
   justify-content: space-evenly;
   display: flex;
