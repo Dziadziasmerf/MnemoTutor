@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable()
@@ -6,7 +6,8 @@ export class ResultsService {
 
   private baseUrl = 'http://localhost:8080/results';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   public sendResult(result: Result) {
     return this.http.post(this.baseUrl, result);
@@ -14,6 +15,10 @@ export class ResultsService {
 
   public getResults(username: string) {
     return this.http.get(this.baseUrl + '?username=' + username);
+  }
+
+  public getResultsByDiscipline(username: string, discipline: string) {
+    return this.http.get(this.baseUrl + '?username=' + username + '&discipline=' + discipline);
   }
 }
 

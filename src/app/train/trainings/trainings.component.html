@@ -12,6 +12,8 @@
     <img mat-card-image src="../../../assets/speed-cards.jpg">
     <mat-card-content>
       <strong>World record: 13.96s</strong>
+      <br/>
+      <strong *ngIf="isLoggedIn()">Your best: {{speedCardsBestTime}}s ({{speedCardsBestScore}}/52) </strong>
     </mat-card-content>
     <div class="buttons-layout">
       <button mat-button class="train-button" (click)="showCardsDialog()">Train</button>
@@ -23,6 +25,8 @@
     <img mat-card-image src="../../../assets/numbers.jpg">
     <mat-card-content>
       <strong>World record: 568 digits</strong>
+      <br/>
+      <strong *ngIf="isLoggedIn()">Your best: {{fiveMinutesNumbersBestScore}} digits</strong>
     </mat-card-content>
     <div class="buttons-layout">
       <button mat-button class="train-button" (click)="showNumbersDialog()">Train</button>
