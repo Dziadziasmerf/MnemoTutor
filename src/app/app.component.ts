@@ -22,13 +22,7 @@ export class AppComponent implements OnInit {
   }
 
   getUserLogin(): string {
-    const token = this.authService.getToken();
-    if (token) {
-      const byteTokenData = token.split('.')[1];
-      const tokenData = atob(byteTokenData);
-      return JSON.parse(tokenData).sub;
-    }
-    return '';
+    return this.authService.getUserLogin();
   }
 
   logout(): void {

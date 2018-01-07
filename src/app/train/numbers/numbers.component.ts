@@ -1,6 +1,8 @@
 import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {SpeechRecognitionService} from '../../services/speech/speech-recognition.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {AuthenticationService} from '../../services/auth/authentication.service';
+import {Result, ResultsService} from '../../services/results/results.service';
 
 @Component({
   selector: 'app-numbers',
@@ -12,6 +14,7 @@ export class NumbersComponent implements OnInit {
 
   TrainingStatus = TrainingStatus;
   noNumberImg = '../assets/numbers/question.png';
+  discipline = '5 minutes numbers';
   numbers: number[] = [];
   userNumbers: number[] = [];
   count = 0;
@@ -22,7 +25,9 @@ export class NumbersComponent implements OnInit {
     return Math.floor(Math.random() * 10 % 10);
   }
 
-  constructor(public dialogRef: MatDialogRef<NumbersComponent>,
+  constructor(private resultsService: ResultsService,
+              private authService: AuthenticationService,
+              public dialogRef: MatDialogRef<NumbersComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private speechRecognitionService: SpeechRecognitionService) {
     this.showListenButton = true;
@@ -102,7 +107,15 @@ export class NumbersComponent implements OnInit {
 
   validate(): void {
     this.trainingStatus = TrainingStatus.END;
-    // TODO send score
+
+    const username = this.authService.getUserLogin();
+    if (username) {
+      const result = new Result();
+      result.username = username;
+      result.discipline = this.discipline;
+      result.score = this.getScore();
+      this.resultsService.sendResult(result).subscribe();
+    }
   }
 
   getNumberFilter(): string {

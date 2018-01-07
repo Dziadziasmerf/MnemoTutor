@@ -33,7 +33,8 @@
       <hr/>
       <span class="my-text">TECHNIQUES</span>
     </button>
-    <button mat-button class="menu-buttons">
+    <button mat-button class="menu-buttons" [routerLink]="['account']"
+            onClick="document.getElementById('content').scrollIntoView();">
       <mat-icon class="menu-buttons-icon">
         portrait
       </mat-icon>

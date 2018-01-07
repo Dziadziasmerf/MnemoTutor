@@ -1,7 +1,7 @@
-<div class="main" id="main">
-  <h1 class="title">5-minute numbers</h1>
-  <h3 *ngIf="trainingStatus === TrainingStatus.NONE" class="info">Click 'Start' when you are ready. Try to remember as many numbers as you can. Navigate between digits with arrows or clicking on one of side digits. Good luck!</h3>
-  <app-timer  *ngIf="trainingStatus === TrainingStatus.NONE || trainingStatus === TrainingStatus.START" (timerEvent)="timerStatusChanged($event)" [timeInSec]="15"></app-timer>
+<div class="main">
+  <h1 class="training-title">5-minute numbers</h1>
+  <h3 *ngIf="trainingStatus === TrainingStatus.NONE" class="info">Click 'Start' when you are ready. Try to remember as many numbers as you can. Navigate between digits with arrows or by clicking on one of side digits. Good luck!</h3>
+  <app-timer  *ngIf="trainingStatus === TrainingStatus.NONE || trainingStatus === TrainingStatus.START" (timerEvent)="timerStatusChanged($event)" [timeInSec]="15" [countdownEnabled]="true"></app-timer>
 
 
   <div class="recall" *ngIf="trainingStatus === TrainingStatus.RECALL">

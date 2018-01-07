@@ -1,7 +1,8 @@
+@import "../discipline.css";
+
 .cards-selection {
   display: flex;
   flex-direction: row;
-  width: 400px;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -14,4 +15,10 @@
 .cards-selection img:hover {
   opacity: 0.6;
   cursor: pointer;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }

@@ -1,19 +1,44 @@
-<h1>Speed cards</h1>
-<button mat-mini-fab color="warn" (click)="setColor('hearts')">
-  <mat-icon aria-label="Example icon-button with a heart icon">&hearts;</mat-icon>
-</button>
-<button mat-mini-fab color="" (click)="setColor('spades')">
-  <mat-icon aria-label="Example icon-button with a heart icon">&spades;</mat-icon>
-</button>
-<button mat-mini-fab color="warn" (click)="setColor('diamonds')">
-  <mat-icon aria-label="Example icon-button with a heart icon">&diams;</mat-icon>
-</button>
-<button mat-mini-fab color="" (click)="setColor('clubs')">
-  <mat-icon aria-label="Example icon-button with a heart icon">&clubs;</mat-icon>
-</button>
+<div class="main">
+  <h1 class="training-title">Speed cards</h1>
+  <h3 *ngIf="trainingStatus === TrainingStatus.NONE" class="info">Click 'Start' when you are ready. Try to remember the order of cards as quickly as you can. Navigate between cards with arrows or by clicking on one of side cards. Click 'Stop' when you are finished. Good luck!</h3>
+  <app-timer *ngIf="trainingStatus === TrainingStatus.NONE || trainingStatus === TrainingStatus.START"
+             (timerEvent)="timerStatusChanged($event)" (result)="timerResult($event)"></app-timer>
 
-<div class="cards-selection">
-  <div *ngFor="let card of cards">
-    <img [src]="getCardImage(color,card)" (click)="selectCard(card)">
+  <div class="recall" *ngIf="trainingStatus === TrainingStatus.RECALL">
+    <h3 class="info">Rearrange the deck:</h3>
+    <div class="filter-buttons">
+      <button mat-mini-fab color="warn" (click)="setColor('hearts')">
+        <mat-icon aria-label="Example icon-button with a heart icon">&hearts;</mat-icon>
+      </button>
+      <button mat-mini-fab color="" (click)="setColor('spades')">
+        <mat-icon aria-label="Example icon-button with a heart icon">&spades;</mat-icon>
+      </button>
+      <button mat-mini-fab color="warn" (click)="setColor('diamonds')">
+        <mat-icon aria-label="Example icon-button with a heart icon">&diams;</mat-icon>
+      </button>
+      <button mat-mini-fab color="" (click)="setColor('clubs')">
+        <mat-icon aria-label="Example icon-button with a heart icon">&clubs;</mat-icon>
+      </button>
+    </div>
+    <div class="cards-selection">
+      <div *ngFor="let card of cards">
+        <img [src]="getCardImageFromStrings(color,card)" *ngIf="!deckContains(color,card)" (click)="selectCard(card)">
+      </div>
+    </div>
+  </div>
+  <div *ngIf="trainingStatus === TrainingStatus.END">
+    <p><strong>Your score: {{getScore()}}/52 in {{getTime()}}</strong></p>
+  </div>
+  <app-slider *ngIf="trainingStatus !== TrainingStatus.NONE" [prevImg]="getPrevCard()"
+              [currentImg]="getCurrentCard()" [nextImg]="getNextCard()"
+              [enableCloseButton]="trainingStatus === TrainingStatus.RECALL"
+              (close)="removeCard()" (moveLeft)="goBack()" (moveRight)="goForward()"
+              [currentImgFilter]="getCardFilter()"></app-slider>
+  <div class="buttons-layout">
+    <button mat-button *ngIf="trainingStatus === TrainingStatus.RECALL" class="validate-button" (click)="validate()">
+      Validate
+    </button>
+    <button mat-button *ngIf="trainingStatus === TrainingStatus.END" class="reset-button" (click)="reset()">Tray again
+    </button>
   </div>
 </div>

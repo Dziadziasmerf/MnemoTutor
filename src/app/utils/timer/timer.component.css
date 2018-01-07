@@ -10,6 +10,7 @@ h1 {
 
 .main {
   justify-content: space-evenly;
+  flex-direction: column;
   display: flex;
   align-items: center;
   width: 300px;

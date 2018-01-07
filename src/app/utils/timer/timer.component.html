@@ -4,5 +4,9 @@
     {{(secondsDisplay) && (secondsDisplay <= 59) ? secondsDisplay : '00'}} <br/>
   </h1>
 
-  <button mat-raised-button (click)="startTimer()" [disabled]="counting">Start</button>
+  <div class="buttons-layout">
+    <button mat-raised-button *ngIf="!counting" (click)="startTimer()" [disabled]="counting">Start</button>
+    <button mat-raised-button *ngIf="!countdownEnabled && counting" (click)="stopTimer()" [disabled]="!counting">Stop</button>
+  </div>
+
 </div>

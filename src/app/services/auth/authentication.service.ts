@@ -27,6 +27,17 @@ export class AuthenticationService {
   public logout(): void {
     localStorage.removeItem('currentUser');
   }
+
+  public getUserLogin(): string {
+    const token = this.getToken();
+    if (token) {
+      const byteTokenData = token.split('.')[1];
+      const tokenData = atob(byteTokenData);
+      return JSON.parse(tokenData).sub;
+    }
+    return '';
+  }
+
 }
 
 
